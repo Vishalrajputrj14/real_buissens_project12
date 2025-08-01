@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lucky Saree Showroom | Elegant Sarees for Every Occasion</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .mobile-nav-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background-color: #e6005c;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .navbar ul.active {
+        display: flex;
+      }
+
+      .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1.5rem;
+      }
+    }
+    
+    .mobile-nav-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        z-index: 999;
+      }
+
+      .navbar ul.active {
+        display: flex;
+      }
+
+      .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1.5rem;
+        z-index: 1001;
+      }
+
+      .navbar ul li a {
+        display: block;
+        padding: 1rem;
+        color: white;
+        text-decoration: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+   <!-- Header -->
+  <header class="hero">
+    <div class="overlay">
+      <nav class="navbar" style="position: relative;">
+        <div class="logo">Lucky Saree Showroom</div>
+        <button class="mobile-nav-toggle" onclick="toggleMenu()">☰</button>
+        <ul id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </nav>
+
+      <div class="hero-content">
+        <h1>Welcome to Lucky Saree Showroom</h1>
+        <p>Discover timeless beauty with our exquisite saree collection</p>
+        <a href="products.html" class="btn">Shop Now</a>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('navLinks');
+      menu.classList.toggle('active');
+    }
+  </script>
+
+  <!-- Featured Section -->
+  <section class="featured">
+    <h2>Our Featured Collections</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="Silk Embroidered Lehenga.jpg" alt="Silk Saree">
+        <h3>Elegant Silk Sarees</h3>
+        <p>Perfect for weddings and festive occasions.</p>
+      </div>
+      <div class="card">
+        <img src="Banarasi Saree.jpg" alt="Cotton Saree">
+        <h3>Pure Cotton Sarees</h3>
+        <p>Comfortable and stylish for daily wear.</p>
+      </div>
+      <div class="card">
+        <img src="Bridal Lehenga.webp" alt="Designer Saree">
+        <h3>Designer Sarees</h3>
+        <p>Exclusive designer pieces for a royal look.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="about">
+    <div class="about-text">
+      <h2>About Lucky Saree Showroom</h2>
+      <p>Established with love and tradition, Lucky Saree Showroom has been dressing women in elegance for over a decade. From classic silks to trending designer sarees, we offer a wide range of collections suitable for every occasion. Visit our store or shop online!</p>
+      
+      <a href="#" class="btn">Know More</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>📍 Bharatpur, Rajasthan | 📞 +91 9876543210 | 📧 luckysaree@email.com</p>
+      <p>&copy; 2025 Lucky Saree Showroom. All rights reserved.</p>
+      <a href="https://wa.me/919876543210" class="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+  </script>
+
+
+  </style>
+</head>
+
+
+
+
+</body>
+</html>

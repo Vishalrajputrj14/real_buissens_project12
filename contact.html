@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Lucky Saree Showroom</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffdf8;
+      color: #333;
+    }
+    header {
+      background-color: #e6005c;
+      padding: 1.5rem 2rem;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .container h2 {
+      text-align: center;
+      color: #b3004b;
+      margin-bottom: 1rem;
+    }
+    .contact-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    form {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+    form input, form textarea {
+      margin-bottom: 1rem;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    form button {
+      background-color: #e6005c;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #c4004c;
+    }
+    .contact-info {
+      flex: 1;
+      min-width: 280px;
+    }
+    .contact-info p {
+      margin: 0.5rem 0;
+    }
+    .map {
+      margin-top: 2rem;
+      width: 100%;
+      height: 300px;
+    }
+    footer {
+      background-color: #111;
+      color: #eee;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+    footer a {
+      color: #25D366;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      .contact-box {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+ <header style="background-color: #e6005c; padding: 1.2rem 2rem; color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 8px rgba(0,0,0,0.1); position: relative; z-index: 1000;">
+  <div style="font-size: 1.8rem; font-weight: bold; letter-spacing: 1px;">Lucky Saree Showroom</div>
+
+  <button class="mobile-nav-toggle" onclick="toggleMenu()" style="font-size: 1.8rem; background: none; border: none; color: white; display: none; cursor: pointer;">☰</button>
+
+  <nav id="desktopNav" class="nav-links" style="display: flex; gap: 20px;">
+    <a href="index.html" style="color: white; text-decoration: none; font-weight: 500;">Home</a>
+    <a href="products.html" style="color: white; text-decoration: none; font-weight: 500;">Products</a>
+    <a href="about.html" style="color: white; text-decoration: none; font-weight: 500;">About</a>
+    <a href="contact.html" style="color: white; text-decoration: none; font-weight: 500;">Contact</a>
+    <a href="cart.html" style="color: white; text-decoration: none; font-weight: 500;">Cart</a>
+  </nav>
+
+  <ul id="mobileMenu" style="display: none; flex-direction: column; position: absolute; top: 100%; right: 0; background-color: #e6005c; width: 100%; text-align: center; margin: 0; padding: 0; list-style: none; z-index: 999;">
+    <li><a href="index.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Home</a></li>
+    <li><a href="products.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Products</a></li>
+    <li><a href="about.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">About</a></li>
+    <li><a href="contact.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Contact</a></li>
+    <li><a href="cart.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Cart</a></li>
+  </ul>
+</header>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  function handleResize() {
+    const desktopNav = document.getElementById('desktopNav');
+    const toggleBtn = document.querySelector('.mobile-nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (window.innerWidth <= 768) {
+      desktopNav.style.display = 'none';
+      toggleBtn.style.display = 'block';
+    } else {
+      desktopNav.style.display = 'flex';
+      toggleBtn.style.display = 'none';
+      mobileMenu.style.display = 'none';
+    }
+  }
+
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('DOMContentLoaded', handleResize);
+</script>
+
+  <div class="container">
+    <h2>Get in Touch With Us</h2>
+    <div class="contact-box">
+      <form action="contact_submit.php" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <input type="tel" name="phone" placeholder="Your Phone Number" required>
+  <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+
+    <!-- <form action="contact.php" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <input type="tel" name="phone" placeholder="Your Phone Number" required>
+  <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form> -->
+
+
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p><strong>📍 Address:</strong><br>OPP. CITY POST OFFICE, JAMA MASJID, BHARATPUR (RAJ.)</p>
+        <p><strong>📞 Phone:</strong> 8946907160</p>
+        <p><strong>📞 Phone:</strong> 962788759</p>
+        <p><strong>📧 Email:</strong> luckysaree@email.com</p>
+        <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/918946907160">Click to Chat</a></p>
+        <p><strong>🕒 Shop Timing:</strong> 10 AM - 8 PM</p>
+      </div>
+    </div>
+
+    <div class="map">
+      <iframe src="https://www.google.com/maps?q=Jama+Masjid,+Bharatpur+Rajasthan&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <footer>
+    <p>📍 OPP. CITY POST OFFICE, JAMA MASJID, BHARATPUR (RAJ.)</p>
+    <p>📞 8946907160 | 962788759</p>
+    <p>📧 luckysaree@email.com</p>
+    <p>📱 <a href="https://wa.me/918946907160">WhatsApp Us</a></p>
+    <br>
+    <p><strong>NOTE:</strong> NO GUARANTEE FOR CLOTH, COLOR & ZARI</p>
+    <p><strong>FIXED PRICE SHOP</strong></p>
+    <p>&copy; 2025 Lucky Saree Showroom</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | Lucky Saree Showroom</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffdf8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #e6005c;
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .cart-section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+    h2 {
+      color: #b3004b;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      text-align: center;
+    }
+    th {
+      background-color: #ffe9f2;
+    }
+    .remove-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .remove-btn:hover {
+      background-color: #cc0000;
+    }
+    .qty-btn {
+      padding: 0 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background: white;
+      margin: 0 4px;
+      border-radius: 4px;
+    }
+    .summary {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .summary h3 {
+      margin-top: 0;
+    }
+    .total-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .checkout-form input, .checkout-form select {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .checkout-form button {
+      background-color: #e6005c;
+      color: white;
+      border: none;
+      padding: 1rem;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .checkout-form button:hover {
+      background-color: #c4004c;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Lucky Saree Showroom</h1>
+    <nav><a href="products.html">&larr; Back to Products</a></nav>
+  </header>
+
+  <section class="cart-section">
+    <div>
+      <h2>Your Cart</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="cart-body"></tbody>
+      </table>
+    </div>
+
+    <div class="summary">
+      <h3>Order Summary</h3>
+      <div class="total-line"><span>Subtotal:</span> <span id="subtotal">₹0</span></div>
+      <div class="total-line"><span>Delivery:</span> <span>₹0</span></div>
+      <div class="total-line"><strong>Total:</strong> <strong id="cart-total">₹0</strong></div>
+
+      <form class="checkout-form" method="POST" action="cart-checkout-backend.php" onsubmit="clearCartOnSubmit()">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <select name="payment-method" required>
+          <option value="">Select Payment Method</option>
+          <option value="upi">UPI</option>
+          <option value="cod">Cash on Delivery</option>
+          <option value="card">Credit/Debit Card</option>
+        </select>
+        <input type="hidden" name="total_amount" id="hidden-total">
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartBody = document.getElementById("cart-body");
+    const cartTotal = document.getElementById("cart-total");
+    const subtotal = document.getElementById("subtotal");
+    const hiddenTotal = document.getElementById("hidden-total");
+
+    function renderCart() {
+      cartBody.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.qty * item.price;
+        total += itemTotal;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>
+            <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+            ${item.qty}
+            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+          </td>
+          <td>₹${item.price}</td>
+          <td>₹${itemTotal}</td>
+          <td><button class="remove-btn" onclick="removeItem(${index})">X</button></td>
+        `;
+        cartBody.appendChild(row);
+      });
+
+      cartTotal.textContent = `₹${total}`;
+      subtotal.textContent = `₹${total}`;
+      hiddenTotal.value = total;
+    }
+
+    function changeQty(index, delta) {
+      if (cart[index].qty + delta > 0) {
+        cart[index].qty += delta;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function clearCartOnSubmit() {
+      localStorage.removeItem("cart");
+    }
+
+    renderCart();
+  </script>
+
+</body>
+</html>

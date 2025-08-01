@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #333;
+}
+
+.hero {
+  height: 100vh;
+  background: url('ChatGPT\ Image\ Jun\ 26\,\ 2025\,\ 11_22_44\ AM.png') center/cover no-repeat;
+  position: relative;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero-content {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #ff0066;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #e6005c;
+}
+
+.featured {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.featured h2 {
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 300px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.about {
+  padding: 3rem 2rem;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.footer-content {
+  background-color: #222;
+  color: #ccc;
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-content a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #25D366;
+  text-decoration: none;
+}

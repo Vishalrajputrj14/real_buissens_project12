@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Lucky Saree Showroom</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffdf8;
+      color: #333;
+    }
+    header {
+      background-color: #e6005c;
+      padding: 1.5rem 2rem;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeIn 1s ease-in;
+    }
+    .section h2 {
+      color: #b3004b;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .stats div {
+      background: #ffe9f2;
+      padding: 1.5rem;
+      border-radius: 10px;
+      width: 150px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .stats h3 {
+      font-size: 2rem;
+      color: #e6005c;
+    }
+    .gallery-slider {
+      position: relative;
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    .slides {
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-img {
+      display: none;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .slide-img.active {
+      display: block;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      border: none;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    footer {
+      background-color: #111;
+      color: #eee;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+    footer a {
+      color: #25D366;
+      text-decoration: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 600px) {
+      .stats div {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+ <header style="background-color: #e6005c; padding: 1.2rem 2rem; color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 8px rgba(0,0,0,0.1); position: relative; z-index: 1000;">
+  <div style="font-size: 1.8rem; font-weight: bold; letter-spacing: 1px;">Lucky Saree Showroom</div>
+
+  <button class="mobile-nav-toggle" onclick="toggleMenu()" style="font-size: 1.8rem; background: none; border: none; color: white; display: none; cursor: pointer;">☰</button>
+
+  <nav id="desktopNav" class="nav-links" style="display: flex; gap: 20px;">
+    <a href="index.html" style="color: white; text-decoration: none; font-weight: 500;">Home</a>
+    <a href="products.html" style="color: white; text-decoration: none; font-weight: 500;">Products</a>
+    <a href="about.html" style="color: white; text-decoration: none; font-weight: 500;">About</a>
+    <a href="contact.html" style="color: white; text-decoration: none; font-weight: 500;">Contact</a>
+    <a href="cart.html" style="color: white; text-decoration: none; font-weight: 500;">Cart</a>
+  </nav>
+
+  <ul id="mobileMenu" style="display: none; flex-direction: column; position: absolute; top: 100%; right: 0; background-color: #e6005c; width: 100%; text-align: center; margin: 0; padding: 0; list-style: none; z-index: 999;">
+    <li><a href="index.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Home</a></li>
+    <li><a href="products.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Products</a></li>
+    <li><a href="about.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">About</a></li>
+    <li><a href="contact.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Contact</a></li>
+    <li><a href="cart.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Cart</a></li>
+  </ul>
+</header>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  function handleResize() {
+    const desktopNav = document.getElementById('desktopNav');
+    const toggleBtn = document.querySelector('.mobile-nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (window.innerWidth <= 768) {
+      desktopNav.style.display = 'none';
+      toggleBtn.style.display = 'block';
+    } else {
+      desktopNav.style.display = 'flex';
+      toggleBtn.style.display = 'none';
+      mobileMenu.style.display = 'none';
+    }
+  }
+
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('DOMContentLoaded', handleResize);
+</script>
+
+
+  <section class="section">
+    <h2>Welcome to Lucky Saree Showroom</h2>
+    <p>
+      At Lucky Saree Showroom, tradition meets elegance. Located in the heart of Bharatpur, we are a trusted destination for premium sarees and bridal lehengas. With a wide variety of styles and unbeatable quality, our mission is to bring every woman closer to her dream attire.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>🏬 Business Experience & Values</h2>
+    <p>
+      Established over 20 years ago, Lucky Saree Showroom is built on values of honesty, quality, and customer-first service. We believe every saree tells a story — of heritage, craftsmanship, and beauty. We aim to deliver this story to your wardrobe.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>🤝 Why Trust Us?</h2>
+    <p>
+      Our customers return again and again — not just for our fashion, but for our service. From transparent pricing to fixed rate policy, we promise an honest and satisfactory shopping experience. With 100% original products and loyal clientele, you can shop with confidence.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>👨‍👩‍👧‍👦 Happy Customers</h2>
+    <div class="stats">
+      <div>
+        <h3>25K+</h3>
+        <p>Happy Shoppers</p>
+      </div>
+      <div>
+        <h3>20+</h3>
+        <p>Years in Service</p>
+      </div>
+      <div>
+        <h3>500+</h3>
+        <p>Bridal Orders</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>📸 A Glimpse of Our Showroom</h2>
+    <div class="gallery-slider">
+      <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+      <div class="slides">
+       <img src="download (1).jpeg" alt="Shop Photo 1" class="slide-img">
+      <img src="download (2).jpeg" alt="Shop Photo 2" class="slide-img">
+      <img src="mwvjj_512.webp" alt="Shop Photo 3" class="slide-img">
+        <img src="Indian-Woman-Dressed-Up-in-Saree_63f865fa89a1e.webp" alt="Shop Photo 4" class="slide-img">
+        <img src="Bridal Lehenga.webp" alt="Shop Photo 5" class="slide-img">
+        <img src="Wedding Heavy Lehenga1.jpg" alt="Shop Photo 6" class="slide-img">
+        <img src="Wedding Heavy Lehenga10.jpg" alt="Shop Photo 7" class="slide-img">
+        <img src="Wedding Heavy Lehenga5.webp" alt="Shop Photo 8" class="slide-img">
+        <img src="Wedding Heavy Lehenga8.jpeg" alt="Shop Photo 9" class="slide-img">
+        <img src="Wedding Heavy Lehenga9.jpg" alt="Shop Photo 10" class="slide-img">
+         
+
+      </div>
+      <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div>
+  </section>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide-img');
+    function showSlides(n) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === n) slide.classList.add('active');
+      });
+    }
+    function plusSlides(n) {
+      slideIndex = (slideIndex + n + slides.length) % slides.length;
+      showSlides(slideIndex);
+    }
+    showSlides(slideIndex);
+  </script>
+
+  <footer>
+    <p>📍 OPP. CITY POST OFFICE, JAMA MASJID, BHARATPUR (RAJ.)</p>
+    <p>📞 8946907160 | 962788759</p>
+    <p>📧 luckysaree@email.com</p>
+    <p>📱 <a href="https://wa.me/918946907160">WhatsApp Us</a></p>
+    <br>
+    <p><strong>NOTE:</strong> NO GUARANTEE FOR CLOTH, COLOR & ZARI</p>
+    <p><strong>FIXED PRICE SHOP</strong></p>
+    <p>&copy; 2025 Lucky Saree Showroom</p>
+  </footer>
+</body>
+</html>
+

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products | Lucky Saree Showroom</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .products-section {
+      padding: 2rem;
+      text-align: center;
+    }
+    .intro-box {
+      background: linear-gradient(to right, #fff0f5, #ffe4e1);
+      padding: 2.5rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease forwards;
+    }
+    .intro-box h2 {
+      font-size: 2.5rem;
+      color: #b3004b;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease 0.3s forwards;
+    }
+    .intro-box p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      color: #333;
+      line-height: 1.8;
+      animation: fadeInUp 1s ease 0.6s forwards;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .product-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .product-card h3 {
+      margin-top: 0.8rem;
+      color: #333;
+    }
+    .product-card p {
+      color: #555;
+      font-size: 0.9rem;
+    }
+    .price {
+      font-weight: bold;
+      margin: 0.5rem 0;
+      color: #e6005c;
+    }
+    .btn {
+      display: inline-block;
+      background: #e6005c;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #c4004c;
+    }
+    footer {
+      background-color: #111;
+      color: #eee;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+    footer h4 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #ffcc00;
+    }
+    footer p {
+      margin: 0.3rem 0;
+    }
+    footer a {
+      color: #25D366;
+      text-decoration: none;
+    }
+    /* Responsive nav toggle */
+@media (max-width: 768px) {
+  #desktopNav {
+    display: none !important;
+  }
+
+  .mobile-nav-toggle {
+    display: block !important;
+  }
+
+  #mobileMenu {
+    display: none;
+    flex-direction: column;
+    background-color: #e6005c;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  #mobileMenu li a {
+    display: block;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+  </style>
+</head>
+<body>
+
+
+<script>
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, qty: 1 }); // 🔥 Every click = new row
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href = "cart.html"; // Redirect to cart
+  }
+</script>
+
+
+
+
+<!-- HEADER START -->
+<header style="background-color: #e6005c; padding: 1.2rem 2rem; color: white; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 8px rgba(0,0,0,0.1); position: relative; z-index: 1000;">
+  <div style="font-size: 1.8rem; font-weight: bold; letter-spacing: 1px;">Lucky Saree Showroom</div>
+
+  <button class="mobile-nav-toggle" onclick="toggleMenu()" style="font-size: 1.8rem; background: none; border: none; color: white; display: none; cursor: pointer;">☰</button>
+
+  <nav id="desktopNav" class="nav-links" style="display: flex; gap: 20px;">
+    <a href="index.html" style="color: white; text-decoration: none; font-weight: 500;">Home</a>
+    <a href="products.html" style="color: white; text-decoration: none; font-weight: 500;">Products</a>
+    <a href="about.html" style="color: white; text-decoration: none; font-weight: 500;">About</a>
+    <a href="contact.html" style="color: white; text-decoration: none; font-weight: 500;">Contact</a>
+    <a href="cart.html" style="color: white; text-decoration: none; font-weight: 500;">Cart</a>
+  </nav>
+
+  <ul id="mobileMenu" style="display: none; flex-direction: column; position: absolute; top: 100%; right: 0; background-color: #e6005c; width: 100%; text-align: center; margin: 0; padding: 0; list-style: none; z-index: 999;">
+    <li><a href="index.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Home</a></li>
+    <li><a href="products.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Products</a></li>
+    <li><a href="about.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">About</a></li>
+    <li><a href="contact.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Contact</a></li>
+    <li><a href="cart.html" style="display: block; padding: 1rem; color: white; text-decoration: none;">Cart</a></li>
+  </ul>
+</header>
+
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  function handleResize() {
+    const desktopNav = document.getElementById('desktopNav');
+    const toggleBtn = document.querySelector('.mobile-nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (window.innerWidth <= 768) {
+      desktopNav.style.display = 'none';
+      toggleBtn.style.display = 'block';
+    } else {
+      desktopNav.style.display = 'flex';
+      toggleBtn.style.display = 'none';
+      mobileMenu.style.display = 'none';
+    }
+  }
+
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('DOMContentLoaded', handleResize);
+</script>
+
+<!-- HEADER END -->
+
+
+  <section class="products-section">
+    <div class="intro-box">
+      <h2>Explore Our Elegant Saree & Bridal Lehenga Collection</h2>
+      <p>
+        Welcome to <strong>Lucky Saree Showroom</strong>, where tradition meets elegance. Discover our exclusive collection crafted for every celebration – from breathable <strong>daily wear sarees</strong> to heavily embroidered <strong>bridal lehengas</strong>. Each piece tells a story of Indian heritage, artistry, and grace.<br><br>
+        Shop with confidence, style with pride — because every woman deserves to feel royal.
+      </p>
+    </div>
+    <div class="product-grid">
+      <!-- Product cards (already inserted by user) -->
+      <!-- ... -->
+      <!-- Product 1 -->
+<div class="product-card">
+  <img src="Printed Daily Saree1.webp" alt="Daily Wear Cotton Saree">
+  <h3>Daily Wear Cotton Saree</h3>
+  <p>Soft and breathable cotton saree for everyday use.</p>
+  <div class="price">₹1,199</div>
+  <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="101">
+    <input type="hidden" name="product_name" value="Daily Wear Cotton Saree">
+    <input type="hidden" name="product_price" value="1199">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+</div>
+
+<!-- Product 2 -->
+<div class="product-card">
+  <img src="Silk Embroidered Lehenga.jpg" alt="Elegant Silk Saree">
+  <h3>Elegant Silk Saree</h3>
+  <p>Rich silk saree with gold zari work. Ideal for weddings.</p>
+  <div class="price">₹3,499</div>
+  <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="102">
+    <input type="hidden" name="product_name" value="Elegant Silk Saree">
+    <input type="hidden" name="product_price" value="3499">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+</div>
+
+<!-- Product 3 -->
+<div class="product-card">
+  <img src="Georgette Printed Saree.jpg" alt="Party Wear Saree">
+  <h3>Party Wear Saree</h3>
+  <p>Designer party saree with shimmer and sequin detailing.</p>
+  <div class="price">₹2,799</div>
+  <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+</div>
+
+
+      <div class="product-card">
+        <img src="Banarasi Saree.jpg" alt="Banarasi Saree">
+        <h3>Banarasi Saree</h3>
+        <p>Traditional banarasi saree with intricate weaving and shine.</p>
+        <div class="price">₹4,199</div>
+      <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+      <div class="product-card">
+        <img src="Bridal Lehenga.webp" alt="Bridal Lehenga">
+        <h3>Bridal Lehenga</h3>
+        <p>Heavy bridal lehenga with mirror and stone embroidery.</p>
+        <div class="price">₹5,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+      <div class="product-card">
+        <img src="mwvjj_512.webp" alt="Georgette Printed Saree">
+        <h3>Georgette Printed Saree</h3>
+        <p>Colorful floral georgette saree for casual parties.</p>
+        <div class="price">₹1,499</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+      <div class="product-card">
+        <img src="Fancy Net Saree.jpeg" alt="Silk Embroidered Lehenga">
+        <h3>Silk Embroidered Lehenga</h3>
+        <p>Stylish silk lehenga with heavy embroidery. Perfect for festivals.</p>
+        <div class="price">₹4,999</div>
+        <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>>
+      </div>
+
+      <div class="product-card">
+        <img src="images.jpeg" alt="Fancy Net Saree">
+        <h3>Fancy Net Saree</h3>
+        <p>Trendy net saree with pearl and lace work.</p>
+        <div class="price">₹2,299</div>
+       <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form> a>
+      </div>
+
+      <div class="product-card">
+        <img src="Printed Daily Saree1.webp" alt="Printed Daily Saree">
+        <h3>Printed Daily Saree</h3>
+        <p>Comfortable and stylish printed saree for daily use.</p>
+        <div class="price">₹1,099</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+      <div class="product-card">
+        <img src="Wedding Heavy Lehenga1.jpg" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga2.webp" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga3.jpeg" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga4.jpg" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga5.webp" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga7.jpeg" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga8.jpeg" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga10.jpg" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga5.webp" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga9.jpg" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+
+          <div class="product-card">
+        <img src="Wedding Heavy Lehenga6.webp" alt="Wedding Heavy Lehenga">
+        <h3>Wedding Heavy Lehenga</h3>
+        <p>Royal red wedding lehenga with velvet and golden zari.</p>
+        <div class="price">₹6,999</div>
+         <form method="POST" action="add_to_cart.php">
+    <input type="hidden" name="product_id" value="103">
+    <input type="hidden" name="product_name" value="Party Wear Saree">
+    <input type="hidden" name="product_price" value="2799">
+    <a href="#" class="btn" onclick="addToCart('Red Bridal Saree', 2499)">Add to Cart</a>
+
+  </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <h4>Lucky Saree Showroom</h4>
+    <p>📍 OPP. CITY POST OFFICE, JAMA MASJID, BHARATPUR (RAJ.)</p>
+    <p>📞 8946907160 | 962788759</p>
+    <p>📧 luckysaree@email.com</p>
+    <p>📱 <a href="https://wa.me/918946907160">WhatsApp Us</a></p>
+    <br>
+    <p><strong>NOTE:</strong> NO GUARANTEE FOR CLOTH, COLOR & ZARI</p>
+    <p><strong>FIXED PRICE SHOP</strong></p>
+    <p>&copy; 2025 Lucky Saree Showroom. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Smooth fade on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.7s ease';
+      observer.observe(card);
+    });
+    
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let found = cart.find(item => item.name === name);
+      if (found) {
+        found.qty += 1;
+      } else {
+        cart.push({ name, qty: 1, price });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+  
+  </script>
+</body>
+</html>
+
